@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -72,7 +73,8 @@ public class Graph {
 
 	private void dfsHelper(int start, ArrayList<Integer> al) {
 		helper.set(start, true);
-		for (int i = adjecentList.get(start).size() - 1; i >= 0; --i) {
+		Collections.sort(adjecentList.get(start));
+		for (int i = 0; i < adjecentList.get(start).size(); ++i) {
 			if (!helper.get(adjecentList.get(start).get(i))) {
 				al.add(adjecentList.get(start).get(i));
 				dfsHelper(adjecentList.get(start).get(i), al);
@@ -95,7 +97,8 @@ public class Graph {
 		helper.set(start, true);
 		while (!q.isEmpty()) {
 			int u = q.remove();
-			for (int i = adjecentList.get(u).size() - 1; i >= 0; --i) {
+			Collections.sort(adjecentList.get(u));
+			for (int i = 0; i < adjecentList.get(u).size(); ++i) {
 				if (!helper.get(adjecentList.get(u).get(i))) {
 					q.add(adjecentList.get(u).get(i));
 					helper.set(adjecentList.get(u).get(i), true);
